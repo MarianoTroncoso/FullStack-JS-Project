@@ -9,11 +9,17 @@ const pacienteController = require('../controllers/pacienteControllers')
 
 module.exports = function(){
 
+    //  TODOS LOS QUE TENEMOS ACA CON ENDPOINTS
+
     // agrega nuevos pacientes via POST
     router.post('/pacientes',
         // importamos el controlador
         pacienteController.nuevoCliente
+    );
 
+    // Obtencion de registros de pacientes en la base de datos 
+    router.get('/pacientes',
+        pacienteController.obtenerPacientes
     )
 
     // necesitamos que esten disponibles todas las rutas

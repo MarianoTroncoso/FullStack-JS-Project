@@ -18,12 +18,24 @@ exports.nuevoCliente = async (req, res, next) => {
         // enviar respuesta hacia la API
         // lo que esta en las {} es lo que pasamos a la funcion
         res.json({mensaje: 'El cliente se agregó correctamente'});
-        
+
     } catch (error) {
         console.log(error);
         next();
     }
 
+}
 
-    
+// obtencion de todos los pacientes
+exports.obtenerPacientes = async (req, res, next) => {
+
+    try {
+        // consultar la base de datos
+        const pacientes = await Paciente.find({});
+        res.json(pacientes);
+
+    } catch (error) {
+        console.log(error);
+        next();
+    }
 }
