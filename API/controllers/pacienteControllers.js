@@ -39,3 +39,41 @@ exports.obtenerPacientes = async (req, res, next) => {
         next();
     }
 }
+
+// obtiene un paciente especifico por su id 
+exports.obtenerPaciente = async (req, res, next) => {
+    try {
+        const paciente = await Paciente.findById(req.params.id);
+        // si existe el paciente lo retornamos como json
+        res.json(paciente);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+// acualizar un registro con id 
+exports.actualizarPaciente = async (req, res, next) =>{
+
+    try {
+        const paciente = await Paciente.findOneAndUpdate({_id: req.params.id}, req.body, {
+            // para que traiga el nuevo resultado (actualizado)
+            new: true
+        });
+        res.json(paciente);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}
+
+// elimina un paciente por su id 
+exports.eliminarPaciente = async (req, res, next) => {
+    try {
+        await Paciente.findByIdAndDelete({_id: req.params.id});
+        res.json({mensaje: 'El paciente fue eliminado'});
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+}

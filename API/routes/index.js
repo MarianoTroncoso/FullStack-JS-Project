@@ -20,7 +20,22 @@ module.exports = function(){
     // Obtencion de registros de pacientes en la base de datos 
     router.get('/pacientes',
         pacienteController.obtenerPacientes
-    )
+    );
+
+    // Obtencion de un paciente especfico por id
+    router.get('/pacientes/:id',
+        pacienteController.obtenerPaciente
+    );
+
+    // actualizar un registro, con id 
+    router.put('/pacientes/:id', 
+        pacienteController.actualizarPaciente
+    );
+
+    // elimina un paciente, con id
+    router.delete('/pacientes/:id', 
+        pacienteController.eliminarPaciente
+    );
 
     // necesitamos que esten disponibles todas las rutas
     // en el archivo principal
