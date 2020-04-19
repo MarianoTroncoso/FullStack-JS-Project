@@ -4,7 +4,8 @@
 // cuando se crea un nuevo cliente
 exports.nuevoCliente = (req, res, next) => {
     // to-do: insertar en la base de datos 
-
+    // req.body es lo que el usuario envia, lo trabajamos con body-parse
+    console.log(req.body)
 
 
     // enviar respuesta hacia la API

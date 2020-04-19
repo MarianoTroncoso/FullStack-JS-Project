@@ -7,7 +7,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 // importamos el routing = archivo de rutas
-const routes = require('./routes')
+const routes = require('./routes');
+
+// body-parser extrae una peticion enviada al servidor 
+// y lo extrae en una variable que tenemos en un controlador 
+// de forma automatica
+const bodyParser = require('body-parser'); // basicamente nos sirve para leer inputs
 
 // crear el servidor, lo nombramos "app"
 const app = express();
@@ -18,7 +23,11 @@ mongoose.connect('mongodb://localhost/veterinaria', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: true
-})
+});
+
+// habilitar el body-parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}))
 
 // habilitar routing
 app.use('/', routes())
