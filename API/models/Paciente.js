@@ -33,5 +33,5 @@ const pacientesSchema = new Schema({
 // mongoose lo tiene a todo siempre en una sola instancia
 // con los cual podemos referinos al modelo pacientes 
 // en toda nuestra aplicacion
-module.exports = mongoose.model('Paciente', pacientesSchema)
+module.exports = mongoose.model('Paciente', pacientesSchema);
 
