@@ -1,0 +1,11 @@
+FORMA DE COMUNICACION ROUTING, CONTROLLERS, MODELO Y LA BD
+cuando hacemos SEND en POSTMAN, 
+(lo que seria igual que mandar datos desde el usuario creo)
+lo primero que toca esa peticion el routing (routes/index.js)
+detecta que es un POST hacia la url que es pasada como parametro 
+va habia el controller para ejecute la funcion de nuevo cliente 
+ahi se importa el modelo 
+le pasamos los datos con req.body
+el modelo llena todos esos datos 
+y se crea una instancia 
+y luego intenta guardar esa intancia
