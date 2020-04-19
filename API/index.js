@@ -14,8 +14,29 @@ const routes = require('./routes');
 // de forma automatica
 const bodyParser = require('body-parser'); // basicamente nos sirve para leer inputs
 
+// para que no nos salga el error CORS en la consola 
+const cors = require('cors');
+
 // crear el servidor, lo nombramos "app"
 const app = express();
+
+// Habilitamos CORS
+// whiteliste es el dominio del que vamos a permitir conexiones
+const whitelist = ['http://localhost:3000'];
+// definimos opciones de cors
+const corsOptions = {
+    // revisamos el origen de la consulta
+    origin: (origin, callback) => {
+        const existe = whitelist.some( dominio => dominio === origin);
+        if ( existe ) {
+            callback(null, true)
+        } else {
+            callback(new Error('No permitido por CORS'));
+        }
+    }
+}
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // conectar nuestra aplicacion con mongoDB
 mongoose.Promise = global.Promise;
