@@ -6,6 +6,9 @@ const express = require('express');
 // importamos mongoose para tener las conexiones
 const mongoose = require('mongoose');
 
+// importamos el routing = archivo de rutas
+const routes = require('./routes')
+
 // crear el servidor, lo nombramos "app"
 const app = express();
 
@@ -16,6 +19,9 @@ mongoose.connect('mongodb://localhost/veterinaria', {
     useUnifiedTopology: true,
     useFindAndModify: true
 })
+
+// habilitar routing
+app.use('/', routes())
 
 // express no tiene nada, vos tenes que ir agregando lo que necesites
 

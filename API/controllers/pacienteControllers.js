@@ -9,5 +9,5 @@ exports.nuevoCliente = (req, res, next) => {
 
     // enviar respuesta hacia la API
     // lo que esta en las {} es lo que pasamos a la funcion
-    res.json({mensaje: 'El cliente se agregó correctamente'})
+    res.json({mensaje: 'El cliente se agregó correctamente'});
 }
