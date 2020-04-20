@@ -17,21 +17,30 @@ function App() {
 
   // state de la aplicacion
   const [citas, guardarCitas] = useState([]);
+  const [consultar, guardarConsultar] = useState(true);
+
 
   // donde vamos a consumir la API externa
   useEffect( () => {
-      const consultarAPI = () => {
-        clienteAxios.get('/pacientes')
-          .then(respuesta => {
-            // colocar en el stateel resultado
-            guardarCitas(respuesta.data);
-          })
-          .catch(error => {
-            console.log(error)
-          })
+      if(consultar){
+        const consultarAPI = () => {
+          clienteAxios.get('/pacientes')
+            .then(respuesta => {
+              // colocar en el stateel resultado
+              guardarCitas(respuesta.data);
+
+              // deshabilitar la consulta 
+              guardarConsultar(false);
+            })
+            .catch(error => {
+              console.log(error)
+            })
+        }
+        consultarAPI();
       }
-      consultarAPI();
-  }, [])
+  }, [consultar]) 
+  // ponemos consultar como una "dependencia" 
+  // entonces cada vez que cambie consultar, se ejecuta de nuevo 
 
   return (
     <Router>
@@ -42,11 +51,18 @@ function App() {
             />
             <Route
               exact path = "/nueva"
-              component={NuevaCita}
+              component={() => <NuevaCita guardarConsultar={guardarConsultar}/> }
             />
             <Route
               exact path = "/cita/:id"
-              component={Cita}
+              render={(props) => {
+                // console.log(props.match.params.id);
+                const cita = citas.filter(cita => cita._id === props.match.params.id);
+                
+                return(
+                  <Cita cita={cita[0]}/>
+                )
+              }}
             />
         </Switch>
     </Router>

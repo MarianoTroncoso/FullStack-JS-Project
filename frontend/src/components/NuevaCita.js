@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+// withRouter usamos para no perder los props
+import { Link, withRouter } from 'react-router-dom';
 
 import clienteAxios from '../config/axios';
 
@@ -35,6 +36,8 @@ const NuevaCita = (props) => {
         clienteAxios.post('/pacientes', cita)
             .then(respuesta => {
                 console.log(respuesta);
+
+                props.guardarConsultar(true);
 
                 // redireccionar
                 props.history.push('/')
@@ -135,4 +138,4 @@ const NuevaCita = (props) => {
     );
 }
  
-export default NuevaCita;
+export default withRouter(NuevaCita);
