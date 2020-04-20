@@ -10,7 +10,11 @@ const pacientesSchema = new Schema({
         // elimina espacios en blanco
         trim: true
     },
-    propietarios: {
+    propietario: {
+        type: String,
+        trim: true
+    },
+    telefono: {
         type: String,
         trim: true
     },
