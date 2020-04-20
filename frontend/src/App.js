@@ -60,7 +60,10 @@ function App() {
                 const cita = citas.filter(cita => cita._id === props.match.params.id);
                 
                 return(
-                  <Cita cita={cita[0]}/>
+                  <Cita 
+                  cita={cita[0]}
+                  guardarConsultar={guardarConsultar}
+                  />
                 )
               }}
             />
